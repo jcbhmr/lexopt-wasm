@@ -1,0 +1,153 @@
+/// Repository: https://github.com/jcbhmr/lexopt-wasm
+/// License: MIT
+package jcbhmr:lexopt;
+
+/// A pathologically simple command line argument parser.
+/// 
+/// Most argument parsers are declarative: you tell them what to parse, and they do it.
+/// 
+/// This one provides you with a stream of options and values and lets you figure out the rest.
+/// 
+/// ## Example
+/// 
+/// ```ts
+/// import * as lexopt from "lexopt";
+/// 
+/// interface Args {
+///     thing: string;
+///     number: number;
+///     shout: boolean;
+/// }
+/// 
+/// function parseArgs(): Args {
+///     let thing: string | null = null;
+///     let number: number = 1;
+///     let shout: boolean = false;
+///     const parser = lexopt.Parser.fromEnv();
+///     while (true) {
+///         const arg = parser.next();
+///         if (arg == null) {
+///             break;
+///         }
+///         if ((arg.tag == "short" && arg.value == "n") || (arg.tag == "long" && arg.val == "number")) {
+///             const parsedNumber = Number.parseInt(parser.value());
+///             if (Number.isNaN(parsedNumber)) {
+///                 throw new Error(`Expected a number, got ${parser.value()}`);
+///             }
+///             number = parsedNumber;
+///         } else if (arg.tag == "long" && arg.val == "shout") {
+///             shout = true;
+///         } else if (arg.tag == "value" && thing == null) {
+///             const val = thing;
+///             thing = val.string();
+///         } else if (arg.tag == "long" && arg.val == "help") {
+///             console.log("Usage: hello [-n|--number=NUM] [--shout] THING");
+///         } else {
+///             throw lexopt.argUnexpected(arg);
+///         }
+///     }
+///     return {
+///         thing: thing ?? throw_(new Error("missing argument THING")),
+///         number,
+///         shout,
+///     };
+/// }
+/// 
+/// const args = parseArgs();
+/// let message = `Hello ${args.thing}`;
+/// if (args.shout) {
+///    message = message.toUpperCase();
+/// }
+/// for (let i = 0; i < args.number; i++) {
+///     console.log(message);
+/// }
+/// ```
+/// 
+/// Let’s walk through this:
+/// 
+/// - We start parsing with parser.from-env().
+/// - We call parser.next() in a loop to get all the arguments until they run out.
+/// - We match on arguments. "short" and "long" indicate an option.
+/// - To get the value that belongs to an option (like 10 in -n 10) we call parser.value().
+///     - This returns a standard list<u8>.
+///     - Calling parser.values() is how we tell parser that -n takes a value at all.
+/// - "value" indicates a free-standing argument.
+///     - if thing == null is a useful pattern for positional arguments. If we already found thing we pass it on to another case.
+///     - It also contains a list<u8>.
+///         - The .string() method decodes it into a plain string.
+/// - If we don't know what to do with an argument we use arg-unexpected() to turn it into an error message.
+/// - Strings can be promoted to errors for custom error messages.
+interface lexopt {
+    
+    /// Docs for PARSER
+    resource parser {
+        bin-name: func() -> option<string>;
+        from-args: static func(args: list<list<u8>>) -> parser;
+        from-env: static func() -> parser;
+        from-iter: static func(iter: list<list<u8>>) -> parser;
+        next: func() -> result<option<arg>, error>;
+        optional-value: func() -> option<list<u8>>;
+        raw-args: func() -> result<raw-args, error>;
+        try-raw-args: func() -> option<raw-args>;
+        value: func() -> result<list<u8>, error>;
+        values: func() -> result<values-iter, error>;
+
+        // Clone trait    
+        clone: func() -> parser;
+        clone-from: func(source: parser) -> parser;
+    }
+
+    resource raw-args {
+        as-slice: func() -> list<list<u8>>;
+        peek: func() -> option<list<u8>>;
+
+        // Iterator trait
+        next: func() -> option<list<u8>>;
+        size-hint: func() -> tuple<u32, option<u32>>;
+        count: func() -> u32;
+        last: func() -> option<list<u8>>;
+        nth: func(n: u32) -> option<list<u8>>;
+    }
+
+    resource values-iter {
+
+    }
+
+    variant arg {
+        short(char),
+        long(string),
+        value(list<u8>),
+    }
+    arg-unexpected: func(self: arg) -> error;
+
+    variant error {
+        missing-value(error-missing-value),
+        unexpected-option(string),
+        unexpected-argument(list<u8>),
+        unexpected-value(error-unexpected-value),
+        parsing-failed(error-parsing-failed),
+        non-unicode-value(list<u8>),
+        custom(string),
+    }
+    record error-missing-value {
+        %option: option<string>,
+    }
+    record error-unexpected-value {
+        %option: string,
+        value: list<u8>,
+    }
+    record error-parsing-failed {
+        value: string,
+        error: string,
+    }
+}
+
+interface lexopt-prelude {
+
+}
+
+/// Docs for WORLD
+world lexopt-world {
+    /// Docs for EXPORT
+    export lexopt;
+}

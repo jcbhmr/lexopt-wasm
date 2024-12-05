@@ -1,0 +1,14 @@
+{
+	"image": "mcr.microsoft.com/devcontainers/rust",
+	"features": {
+		"ghcr.io/devcontainers/features/node": {}
+	},
+	"updateContentCommand": "curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash && cargo binstall -y cargo-component wasm-tools && npm install -g @bytecodealliance/jco",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"bytecodealliance.wit-idl"
+			]
+		}
+	}
+}

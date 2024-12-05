@@ -1,16 +1,16 @@
 #[allow(dead_code)]
 pub mod exports {
     #[allow(dead_code)]
-    pub mod component {
+    pub mod jcbhmr {
         #[allow(dead_code)]
-        pub mod lexopt_wasm {
+        pub mod lexopt {
             #[allow(dead_code, clippy::all)]
             pub mod lexopt {
                 #[used]
                 #[doc(hidden)]
                 static __FORCE_SECTION_REF: fn() = super::super::super::super::__link_custom_section_describing_imports;
                 use super::super::super::super::_rt;
-                pub type RustError = _rt::String;
+                /// Docs for PARSER
                 #[derive(Debug)]
                 #[repr(transparent)]
                 pub struct Parser {
@@ -121,9 +121,7 @@ pub mod exports {
                         unreachable!();
                         #[cfg(target_arch = "wasm32")]
                         {
-                            #[link(
-                                wasm_import_module = "[export]component:lexopt-wasm/lexopt"
-                            )]
+                            #[link(wasm_import_module = "[export]jcbhmr:lexopt/lexopt")]
                             extern "C" {
                                 #[link_name = "[resource-drop]parser"]
                                 fn drop(_: u32);
@@ -242,9 +240,7 @@ pub mod exports {
                         unreachable!();
                         #[cfg(target_arch = "wasm32")]
                         {
-                            #[link(
-                                wasm_import_module = "[export]component:lexopt-wasm/lexopt"
-                            )]
+                            #[link(wasm_import_module = "[export]jcbhmr:lexopt/lexopt")]
                             extern "C" {
                                 #[link_name = "[resource-drop]raw-args"]
                                 fn drop(_: u32);
@@ -363,9 +359,7 @@ pub mod exports {
                         unreachable!();
                         #[cfg(target_arch = "wasm32")]
                         {
-                            #[link(
-                                wasm_import_module = "[export]component:lexopt-wasm/lexopt"
-                            )]
+                            #[link(wasm_import_module = "[export]jcbhmr:lexopt/lexopt")]
                             extern "C" {
                                 #[link_name = "[resource-drop]values-iter"]
                                 fn drop(_: u32);
@@ -429,7 +423,7 @@ pub mod exports {
                 #[derive(Clone)]
                 pub struct ErrorParsingFailed {
                     pub value: _rt::String,
-                    pub error: RustError,
+                    pub error: _rt::String,
                 }
                 impl ::core::fmt::Debug for ErrorParsingFailed {
                     fn fmt(
@@ -450,7 +444,7 @@ pub mod exports {
                     UnexpectedValue(ErrorUnexpectedValue),
                     ParsingFailed(ErrorParsingFailed),
                     NonUnicodeValue(_rt::Vec<u8>),
-                    Custom(RustError),
+                    Custom(_rt::String),
                 }
                 impl ::core::fmt::Debug for Error {
                     fn fmt(
@@ -1731,17 +1725,6 @@ pub mod exports {
                 }
                 #[doc(hidden)]
                 #[allow(non_snake_case)]
-                pub unsafe fn _export_method_raw_args_by_ref_cabi<T: GuestRawArgs>(
-                    arg0: *mut u8,
-                ) -> i32 {
-                    #[cfg(target_arch = "wasm32")] _rt::run_ctors_once();
-                    let result0 = T::by_ref(
-                        RawArgsBorrow::lift(arg0 as u32 as usize).get(),
-                    );
-                    (result0).take_handle() as i32
-                }
-                #[doc(hidden)]
-                #[allow(non_snake_case)]
                 pub unsafe fn _export_arg_unexpected_cabi<T: Guest>(
                     arg0: i32,
                     arg1: *mut u8,
@@ -1948,9 +1931,7 @@ pub mod exports {
                         }
                         #[cfg(target_arch = "wasm32")]
                         {
-                            #[link(
-                                wasm_import_module = "[export]component:lexopt-wasm/lexopt"
-                            )]
+                            #[link(wasm_import_module = "[export]jcbhmr:lexopt/lexopt")]
                             extern "C" {
                                 #[link_name = "[resource-new]parser"]
                                 fn new(_: *mut u8) -> u32;
@@ -1970,9 +1951,7 @@ pub mod exports {
                         }
                         #[cfg(target_arch = "wasm32")]
                         {
-                            #[link(
-                                wasm_import_module = "[export]component:lexopt-wasm/lexopt"
-                            )]
+                            #[link(wasm_import_module = "[export]jcbhmr:lexopt/lexopt")]
                             extern "C" {
                                 #[link_name = "[resource-rep]parser"]
                                 fn rep(_: u32) -> *mut u8;
@@ -2007,9 +1986,7 @@ pub mod exports {
                         }
                         #[cfg(target_arch = "wasm32")]
                         {
-                            #[link(
-                                wasm_import_module = "[export]component:lexopt-wasm/lexopt"
-                            )]
+                            #[link(wasm_import_module = "[export]jcbhmr:lexopt/lexopt")]
                             extern "C" {
                                 #[link_name = "[resource-new]raw-args"]
                                 fn new(_: *mut u8) -> u32;
@@ -2029,9 +2006,7 @@ pub mod exports {
                         }
                         #[cfg(target_arch = "wasm32")]
                         {
-                            #[link(
-                                wasm_import_module = "[export]component:lexopt-wasm/lexopt"
-                            )]
+                            #[link(wasm_import_module = "[export]jcbhmr:lexopt/lexopt")]
                             extern "C" {
                                 #[link_name = "[resource-rep]raw-args"]
                                 fn rep(_: u32) -> *mut u8;
@@ -2047,7 +2022,6 @@ pub mod exports {
                     fn count(&self) -> u32;
                     fn last(&self) -> Option<_rt::Vec<u8>>;
                     fn nth(&self, n: u32) -> Option<_rt::Vec<u8>>;
-                    fn by_ref(&self) -> RawArgs;
                 }
                 pub trait GuestValuesIter: 'static {
                     #[doc(hidden)]
@@ -2062,9 +2036,7 @@ pub mod exports {
                         }
                         #[cfg(target_arch = "wasm32")]
                         {
-                            #[link(
-                                wasm_import_module = "[export]component:lexopt-wasm/lexopt"
-                            )]
+                            #[link(wasm_import_module = "[export]jcbhmr:lexopt/lexopt")]
                             extern "C" {
                                 #[link_name = "[resource-new]values-iter"]
                                 fn new(_: *mut u8) -> u32;
@@ -2084,9 +2056,7 @@ pub mod exports {
                         }
                         #[cfg(target_arch = "wasm32")]
                         {
-                            #[link(
-                                wasm_import_module = "[export]component:lexopt-wasm/lexopt"
-                            )]
+                            #[link(wasm_import_module = "[export]jcbhmr:lexopt/lexopt")]
                             extern "C" {
                                 #[link_name = "[resource-rep]values-iter"]
                                 fn rep(_: u32) -> *mut u8;
@@ -2096,192 +2066,167 @@ pub mod exports {
                     }
                 }
                 #[doc(hidden)]
-                macro_rules! __export_component_lexopt_wasm_lexopt_cabi {
+                macro_rules! __export_jcbhmr_lexopt_lexopt_cabi {
                     ($ty:ident with_types_in $($path_to_types:tt)*) => {
                         const _ : () = { #[export_name =
-                        "component:lexopt-wasm/lexopt#[method]parser.bin-name"] unsafe
-                        extern "C" fn export_method_parser_bin_name(arg0 : * mut u8,) ->
-                        * mut u8 { $($path_to_types)*::
-                        _export_method_parser_bin_name_cabi::<<$ty as
-                        $($path_to_types)*:: Guest >::Parser > (arg0) } #[export_name =
-                        "cabi_post_component:lexopt-wasm/lexopt#[method]parser.bin-name"]
+                        "jcbhmr:lexopt/lexopt#[method]parser.bin-name"] unsafe extern "C"
+                        fn export_method_parser_bin_name(arg0 : * mut u8,) -> * mut u8 {
+                        $($path_to_types)*:: _export_method_parser_bin_name_cabi::<<$ty
+                        as $($path_to_types)*:: Guest >::Parser > (arg0) } #[export_name
+                        = "cabi_post_jcbhmr:lexopt/lexopt#[method]parser.bin-name"]
                         unsafe extern "C" fn _post_return_method_parser_bin_name(arg0 : *
                         mut u8,) { $($path_to_types)*::
                         __post_return_method_parser_bin_name::<<$ty as
                         $($path_to_types)*:: Guest >::Parser > (arg0) } #[export_name =
-                        "component:lexopt-wasm/lexopt#[static]parser.from-args"] unsafe
-                        extern "C" fn export_static_parser_from_args(arg0 : * mut u8,
-                        arg1 : usize,) -> i32 { $($path_to_types)*::
+                        "jcbhmr:lexopt/lexopt#[static]parser.from-args"] unsafe extern
+                        "C" fn export_static_parser_from_args(arg0 : * mut u8, arg1 :
+                        usize,) -> i32 { $($path_to_types)*::
                         _export_static_parser_from_args_cabi::<<$ty as
                         $($path_to_types)*:: Guest >::Parser > (arg0, arg1) }
-                        #[export_name =
-                        "component:lexopt-wasm/lexopt#[static]parser.from-env"] unsafe
-                        extern "C" fn export_static_parser_from_env() -> i32 {
+                        #[export_name = "jcbhmr:lexopt/lexopt#[static]parser.from-env"]
+                        unsafe extern "C" fn export_static_parser_from_env() -> i32 {
                         $($path_to_types)*:: _export_static_parser_from_env_cabi::<<$ty
                         as $($path_to_types)*:: Guest >::Parser > () } #[export_name =
-                        "component:lexopt-wasm/lexopt#[static]parser.from-iter"] unsafe
-                        extern "C" fn export_static_parser_from_iter(arg0 : * mut u8,
-                        arg1 : usize,) -> i32 { $($path_to_types)*::
+                        "jcbhmr:lexopt/lexopt#[static]parser.from-iter"] unsafe extern
+                        "C" fn export_static_parser_from_iter(arg0 : * mut u8, arg1 :
+                        usize,) -> i32 { $($path_to_types)*::
                         _export_static_parser_from_iter_cabi::<<$ty as
                         $($path_to_types)*:: Guest >::Parser > (arg0, arg1) }
-                        #[export_name =
-                        "component:lexopt-wasm/lexopt#[method]parser.next"] unsafe extern
-                        "C" fn export_method_parser_next(arg0 : * mut u8,) -> * mut u8 {
-                        $($path_to_types)*:: _export_method_parser_next_cabi::<<$ty as
-                        $($path_to_types)*:: Guest >::Parser > (arg0) } #[export_name =
-                        "cabi_post_component:lexopt-wasm/lexopt#[method]parser.next"]
-                        unsafe extern "C" fn _post_return_method_parser_next(arg0 : * mut
-                        u8,) { $($path_to_types)*::
-                        __post_return_method_parser_next::<<$ty as $($path_to_types)*::
+                        #[export_name = "jcbhmr:lexopt/lexopt#[method]parser.next"]
+                        unsafe extern "C" fn export_method_parser_next(arg0 : * mut u8,)
+                        -> * mut u8 { $($path_to_types)*::
+                        _export_method_parser_next_cabi::<<$ty as $($path_to_types)*::
                         Guest >::Parser > (arg0) } #[export_name =
-                        "component:lexopt-wasm/lexopt#[method]parser.optional-value"]
-                        unsafe extern "C" fn export_method_parser_optional_value(arg0 : *
-                        mut u8,) -> * mut u8 { $($path_to_types)*::
+                        "cabi_post_jcbhmr:lexopt/lexopt#[method]parser.next"] unsafe
+                        extern "C" fn _post_return_method_parser_next(arg0 : * mut u8,) {
+                        $($path_to_types)*:: __post_return_method_parser_next::<<$ty as
+                        $($path_to_types)*:: Guest >::Parser > (arg0) } #[export_name =
+                        "jcbhmr:lexopt/lexopt#[method]parser.optional-value"] unsafe
+                        extern "C" fn export_method_parser_optional_value(arg0 : * mut
+                        u8,) -> * mut u8 { $($path_to_types)*::
                         _export_method_parser_optional_value_cabi::<<$ty as
                         $($path_to_types)*:: Guest >::Parser > (arg0) } #[export_name =
-                        "cabi_post_component:lexopt-wasm/lexopt#[method]parser.optional-value"]
+                        "cabi_post_jcbhmr:lexopt/lexopt#[method]parser.optional-value"]
                         unsafe extern "C" fn
                         _post_return_method_parser_optional_value(arg0 : * mut u8,) {
                         $($path_to_types)*::
                         __post_return_method_parser_optional_value::<<$ty as
                         $($path_to_types)*:: Guest >::Parser > (arg0) } #[export_name =
-                        "component:lexopt-wasm/lexopt#[method]parser.raw-args"] unsafe
-                        extern "C" fn export_method_parser_raw_args(arg0 : * mut u8,) ->
-                        * mut u8 { $($path_to_types)*::
-                        _export_method_parser_raw_args_cabi::<<$ty as
-                        $($path_to_types)*:: Guest >::Parser > (arg0) } #[export_name =
-                        "cabi_post_component:lexopt-wasm/lexopt#[method]parser.raw-args"]
+                        "jcbhmr:lexopt/lexopt#[method]parser.raw-args"] unsafe extern "C"
+                        fn export_method_parser_raw_args(arg0 : * mut u8,) -> * mut u8 {
+                        $($path_to_types)*:: _export_method_parser_raw_args_cabi::<<$ty
+                        as $($path_to_types)*:: Guest >::Parser > (arg0) } #[export_name
+                        = "cabi_post_jcbhmr:lexopt/lexopt#[method]parser.raw-args"]
                         unsafe extern "C" fn _post_return_method_parser_raw_args(arg0 : *
                         mut u8,) { $($path_to_types)*::
                         __post_return_method_parser_raw_args::<<$ty as
                         $($path_to_types)*:: Guest >::Parser > (arg0) } #[export_name =
-                        "component:lexopt-wasm/lexopt#[method]parser.try-raw-args"]
-                        unsafe extern "C" fn export_method_parser_try_raw_args(arg0 : *
-                        mut u8,) -> * mut u8 { $($path_to_types)*::
+                        "jcbhmr:lexopt/lexopt#[method]parser.try-raw-args"] unsafe extern
+                        "C" fn export_method_parser_try_raw_args(arg0 : * mut u8,) -> *
+                        mut u8 { $($path_to_types)*::
                         _export_method_parser_try_raw_args_cabi::<<$ty as
                         $($path_to_types)*:: Guest >::Parser > (arg0) } #[export_name =
-                        "component:lexopt-wasm/lexopt#[method]parser.value"] unsafe
-                        extern "C" fn export_method_parser_value(arg0 : * mut u8,) -> *
-                        mut u8 { $($path_to_types)*::
-                        _export_method_parser_value_cabi::<<$ty as $($path_to_types)*::
-                        Guest >::Parser > (arg0) } #[export_name =
-                        "cabi_post_component:lexopt-wasm/lexopt#[method]parser.value"]
-                        unsafe extern "C" fn _post_return_method_parser_value(arg0 : *
-                        mut u8,) { $($path_to_types)*::
-                        __post_return_method_parser_value::<<$ty as $($path_to_types)*::
-                        Guest >::Parser > (arg0) } #[export_name =
-                        "component:lexopt-wasm/lexopt#[method]parser.values"] unsafe
-                        extern "C" fn export_method_parser_values(arg0 : * mut u8,) -> *
-                        mut u8 { $($path_to_types)*::
-                        _export_method_parser_values_cabi::<<$ty as $($path_to_types)*::
-                        Guest >::Parser > (arg0) } #[export_name =
-                        "cabi_post_component:lexopt-wasm/lexopt#[method]parser.values"]
-                        unsafe extern "C" fn _post_return_method_parser_values(arg0 : *
-                        mut u8,) { $($path_to_types)*::
-                        __post_return_method_parser_values::<<$ty as $($path_to_types)*::
-                        Guest >::Parser > (arg0) } #[export_name =
-                        "component:lexopt-wasm/lexopt#[method]parser.clone"] unsafe
-                        extern "C" fn export_method_parser_clone(arg0 : * mut u8,) -> i32
-                        { $($path_to_types)*:: _export_method_parser_clone_cabi::<<$ty as
+                        "jcbhmr:lexopt/lexopt#[method]parser.value"] unsafe extern "C" fn
+                        export_method_parser_value(arg0 : * mut u8,) -> * mut u8 {
+                        $($path_to_types)*:: _export_method_parser_value_cabi::<<$ty as
                         $($path_to_types)*:: Guest >::Parser > (arg0) } #[export_name =
-                        "component:lexopt-wasm/lexopt#[method]parser.clone-from"] unsafe
-                        extern "C" fn export_method_parser_clone_from(arg0 : * mut u8,
-                        arg1 : i32,) -> i32 { $($path_to_types)*::
+                        "cabi_post_jcbhmr:lexopt/lexopt#[method]parser.value"] unsafe
+                        extern "C" fn _post_return_method_parser_value(arg0 : * mut u8,)
+                        { $($path_to_types)*:: __post_return_method_parser_value::<<$ty
+                        as $($path_to_types)*:: Guest >::Parser > (arg0) } #[export_name
+                        = "jcbhmr:lexopt/lexopt#[method]parser.values"] unsafe extern "C"
+                        fn export_method_parser_values(arg0 : * mut u8,) -> * mut u8 {
+                        $($path_to_types)*:: _export_method_parser_values_cabi::<<$ty as
+                        $($path_to_types)*:: Guest >::Parser > (arg0) } #[export_name =
+                        "cabi_post_jcbhmr:lexopt/lexopt#[method]parser.values"] unsafe
+                        extern "C" fn _post_return_method_parser_values(arg0 : * mut u8,)
+                        { $($path_to_types)*:: __post_return_method_parser_values::<<$ty
+                        as $($path_to_types)*:: Guest >::Parser > (arg0) } #[export_name
+                        = "jcbhmr:lexopt/lexopt#[method]parser.clone"] unsafe extern "C"
+                        fn export_method_parser_clone(arg0 : * mut u8,) -> i32 {
+                        $($path_to_types)*:: _export_method_parser_clone_cabi::<<$ty as
+                        $($path_to_types)*:: Guest >::Parser > (arg0) } #[export_name =
+                        "jcbhmr:lexopt/lexopt#[method]parser.clone-from"] unsafe extern
+                        "C" fn export_method_parser_clone_from(arg0 : * mut u8, arg1 :
+                        i32,) -> i32 { $($path_to_types)*::
                         _export_method_parser_clone_from_cabi::<<$ty as
                         $($path_to_types)*:: Guest >::Parser > (arg0, arg1) }
-                        #[export_name =
-                        "component:lexopt-wasm/lexopt#[method]raw-args.as-slice"] unsafe
-                        extern "C" fn export_method_raw_args_as_slice(arg0 : * mut u8,)
-                        -> * mut u8 { $($path_to_types)*::
+                        #[export_name = "jcbhmr:lexopt/lexopt#[method]raw-args.as-slice"]
+                        unsafe extern "C" fn export_method_raw_args_as_slice(arg0 : * mut
+                        u8,) -> * mut u8 { $($path_to_types)*::
                         _export_method_raw_args_as_slice_cabi::<<$ty as
                         $($path_to_types)*:: Guest >::RawArgs > (arg0) } #[export_name =
-                        "cabi_post_component:lexopt-wasm/lexopt#[method]raw-args.as-slice"]
+                        "cabi_post_jcbhmr:lexopt/lexopt#[method]raw-args.as-slice"]
                         unsafe extern "C" fn _post_return_method_raw_args_as_slice(arg0 :
                         * mut u8,) { $($path_to_types)*::
                         __post_return_method_raw_args_as_slice::<<$ty as
                         $($path_to_types)*:: Guest >::RawArgs > (arg0) } #[export_name =
-                        "component:lexopt-wasm/lexopt#[method]raw-args.peek"] unsafe
-                        extern "C" fn export_method_raw_args_peek(arg0 : * mut u8,) -> *
-                        mut u8 { $($path_to_types)*::
-                        _export_method_raw_args_peek_cabi::<<$ty as $($path_to_types)*::
-                        Guest >::RawArgs > (arg0) } #[export_name =
-                        "cabi_post_component:lexopt-wasm/lexopt#[method]raw-args.peek"]
-                        unsafe extern "C" fn _post_return_method_raw_args_peek(arg0 : *
-                        mut u8,) { $($path_to_types)*::
-                        __post_return_method_raw_args_peek::<<$ty as $($path_to_types)*::
-                        Guest >::RawArgs > (arg0) } #[export_name =
-                        "component:lexopt-wasm/lexopt#[method]raw-args.next"] unsafe
-                        extern "C" fn export_method_raw_args_next(arg0 : * mut u8,) -> *
-                        mut u8 { $($path_to_types)*::
-                        _export_method_raw_args_next_cabi::<<$ty as $($path_to_types)*::
-                        Guest >::RawArgs > (arg0) } #[export_name =
-                        "cabi_post_component:lexopt-wasm/lexopt#[method]raw-args.next"]
-                        unsafe extern "C" fn _post_return_method_raw_args_next(arg0 : *
-                        mut u8,) { $($path_to_types)*::
-                        __post_return_method_raw_args_next::<<$ty as $($path_to_types)*::
-                        Guest >::RawArgs > (arg0) } #[export_name =
-                        "component:lexopt-wasm/lexopt#[method]raw-args.size-hint"] unsafe
+                        "jcbhmr:lexopt/lexopt#[method]raw-args.peek"] unsafe extern "C"
+                        fn export_method_raw_args_peek(arg0 : * mut u8,) -> * mut u8 {
+                        $($path_to_types)*:: _export_method_raw_args_peek_cabi::<<$ty as
+                        $($path_to_types)*:: Guest >::RawArgs > (arg0) } #[export_name =
+                        "cabi_post_jcbhmr:lexopt/lexopt#[method]raw-args.peek"] unsafe
+                        extern "C" fn _post_return_method_raw_args_peek(arg0 : * mut u8,)
+                        { $($path_to_types)*:: __post_return_method_raw_args_peek::<<$ty
+                        as $($path_to_types)*:: Guest >::RawArgs > (arg0) } #[export_name
+                        = "jcbhmr:lexopt/lexopt#[method]raw-args.next"] unsafe extern "C"
+                        fn export_method_raw_args_next(arg0 : * mut u8,) -> * mut u8 {
+                        $($path_to_types)*:: _export_method_raw_args_next_cabi::<<$ty as
+                        $($path_to_types)*:: Guest >::RawArgs > (arg0) } #[export_name =
+                        "cabi_post_jcbhmr:lexopt/lexopt#[method]raw-args.next"] unsafe
+                        extern "C" fn _post_return_method_raw_args_next(arg0 : * mut u8,)
+                        { $($path_to_types)*:: __post_return_method_raw_args_next::<<$ty
+                        as $($path_to_types)*:: Guest >::RawArgs > (arg0) } #[export_name
+                        = "jcbhmr:lexopt/lexopt#[method]raw-args.size-hint"] unsafe
                         extern "C" fn export_method_raw_args_size_hint(arg0 : * mut u8,)
                         -> * mut u8 { $($path_to_types)*::
                         _export_method_raw_args_size_hint_cabi::<<$ty as
                         $($path_to_types)*:: Guest >::RawArgs > (arg0) } #[export_name =
-                        "component:lexopt-wasm/lexopt#[method]raw-args.count"] unsafe
-                        extern "C" fn export_method_raw_args_count(arg0 : * mut u8,) ->
-                        i32 { $($path_to_types)*::
-                        _export_method_raw_args_count_cabi::<<$ty as $($path_to_types)*::
-                        Guest >::RawArgs > (arg0) } #[export_name =
-                        "component:lexopt-wasm/lexopt#[method]raw-args.last"] unsafe
-                        extern "C" fn export_method_raw_args_last(arg0 : * mut u8,) -> *
+                        "jcbhmr:lexopt/lexopt#[method]raw-args.count"] unsafe extern "C"
+                        fn export_method_raw_args_count(arg0 : * mut u8,) -> i32 {
+                        $($path_to_types)*:: _export_method_raw_args_count_cabi::<<$ty as
+                        $($path_to_types)*:: Guest >::RawArgs > (arg0) } #[export_name =
+                        "jcbhmr:lexopt/lexopt#[method]raw-args.last"] unsafe extern "C"
+                        fn export_method_raw_args_last(arg0 : * mut u8,) -> * mut u8 {
+                        $($path_to_types)*:: _export_method_raw_args_last_cabi::<<$ty as
+                        $($path_to_types)*:: Guest >::RawArgs > (arg0) } #[export_name =
+                        "cabi_post_jcbhmr:lexopt/lexopt#[method]raw-args.last"] unsafe
+                        extern "C" fn _post_return_method_raw_args_last(arg0 : * mut u8,)
+                        { $($path_to_types)*:: __post_return_method_raw_args_last::<<$ty
+                        as $($path_to_types)*:: Guest >::RawArgs > (arg0) } #[export_name
+                        = "jcbhmr:lexopt/lexopt#[method]raw-args.nth"] unsafe extern "C"
+                        fn export_method_raw_args_nth(arg0 : * mut u8, arg1 : i32,) -> *
                         mut u8 { $($path_to_types)*::
-                        _export_method_raw_args_last_cabi::<<$ty as $($path_to_types)*::
-                        Guest >::RawArgs > (arg0) } #[export_name =
-                        "cabi_post_component:lexopt-wasm/lexopt#[method]raw-args.last"]
-                        unsafe extern "C" fn _post_return_method_raw_args_last(arg0 : *
-                        mut u8,) { $($path_to_types)*::
-                        __post_return_method_raw_args_last::<<$ty as $($path_to_types)*::
-                        Guest >::RawArgs > (arg0) } #[export_name =
-                        "component:lexopt-wasm/lexopt#[method]raw-args.nth"] unsafe
-                        extern "C" fn export_method_raw_args_nth(arg0 : * mut u8, arg1 :
-                        i32,) -> * mut u8 { $($path_to_types)*::
                         _export_method_raw_args_nth_cabi::<<$ty as $($path_to_types)*::
                         Guest >::RawArgs > (arg0, arg1) } #[export_name =
-                        "cabi_post_component:lexopt-wasm/lexopt#[method]raw-args.nth"]
-                        unsafe extern "C" fn _post_return_method_raw_args_nth(arg0 : *
-                        mut u8,) { $($path_to_types)*::
-                        __post_return_method_raw_args_nth::<<$ty as $($path_to_types)*::
-                        Guest >::RawArgs > (arg0) } #[export_name =
-                        "component:lexopt-wasm/lexopt#[method]raw-args.by-ref"] unsafe
-                        extern "C" fn export_method_raw_args_by_ref(arg0 : * mut u8,) ->
-                        i32 { $($path_to_types)*::
-                        _export_method_raw_args_by_ref_cabi::<<$ty as
-                        $($path_to_types)*:: Guest >::RawArgs > (arg0) } #[export_name =
-                        "component:lexopt-wasm/lexopt#arg-unexpected"] unsafe extern "C"
-                        fn export_arg_unexpected(arg0 : i32, arg1 : * mut u8, arg2 :
-                        usize,) -> * mut u8 { $($path_to_types)*::
+                        "cabi_post_jcbhmr:lexopt/lexopt#[method]raw-args.nth"] unsafe
+                        extern "C" fn _post_return_method_raw_args_nth(arg0 : * mut u8,)
+                        { $($path_to_types)*:: __post_return_method_raw_args_nth::<<$ty
+                        as $($path_to_types)*:: Guest >::RawArgs > (arg0) } #[export_name
+                        = "jcbhmr:lexopt/lexopt#arg-unexpected"] unsafe extern "C" fn
+                        export_arg_unexpected(arg0 : i32, arg1 : * mut u8, arg2 : usize,)
+                        -> * mut u8 { $($path_to_types)*::
                         _export_arg_unexpected_cabi::<$ty > (arg0, arg1, arg2) }
-                        #[export_name =
-                        "cabi_post_component:lexopt-wasm/lexopt#arg-unexpected"] unsafe
-                        extern "C" fn _post_return_arg_unexpected(arg0 : * mut u8,) {
-                        $($path_to_types)*:: __post_return_arg_unexpected::<$ty > (arg0)
-                        } const _ : () = { #[doc(hidden)] #[export_name =
-                        "component:lexopt-wasm/lexopt#[dtor]parser"]
-                        #[allow(non_snake_case)] unsafe extern "C" fn dtor(rep : * mut
-                        u8) { $($path_to_types)*:: Parser::dtor::< <$ty as
-                        $($path_to_types)*:: Guest >::Parser > (rep) } }; const _ : () =
-                        { #[doc(hidden)] #[export_name =
-                        "component:lexopt-wasm/lexopt#[dtor]raw-args"]
-                        #[allow(non_snake_case)] unsafe extern "C" fn dtor(rep : * mut
-                        u8) { $($path_to_types)*:: RawArgs::dtor::< <$ty as
-                        $($path_to_types)*:: Guest >::RawArgs > (rep) } }; const _ : () =
-                        { #[doc(hidden)] #[export_name =
-                        "component:lexopt-wasm/lexopt#[dtor]values-iter"]
+                        #[export_name = "cabi_post_jcbhmr:lexopt/lexopt#arg-unexpected"]
+                        unsafe extern "C" fn _post_return_arg_unexpected(arg0 : * mut
+                        u8,) { $($path_to_types)*:: __post_return_arg_unexpected::<$ty >
+                        (arg0) } const _ : () = { #[doc(hidden)] #[export_name =
+                        "jcbhmr:lexopt/lexopt#[dtor]parser"] #[allow(non_snake_case)]
+                        unsafe extern "C" fn dtor(rep : * mut u8) { $($path_to_types)*::
+                        Parser::dtor::< <$ty as $($path_to_types)*:: Guest >::Parser >
+                        (rep) } }; const _ : () = { #[doc(hidden)] #[export_name =
+                        "jcbhmr:lexopt/lexopt#[dtor]raw-args"] #[allow(non_snake_case)]
+                        unsafe extern "C" fn dtor(rep : * mut u8) { $($path_to_types)*::
+                        RawArgs::dtor::< <$ty as $($path_to_types)*:: Guest >::RawArgs >
+                        (rep) } }; const _ : () = { #[doc(hidden)] #[export_name =
+                        "jcbhmr:lexopt/lexopt#[dtor]values-iter"]
                         #[allow(non_snake_case)] unsafe extern "C" fn dtor(rep : * mut
                         u8) { $($path_to_types)*:: ValuesIter::dtor::< <$ty as
                         $($path_to_types)*:: Guest >::ValuesIter > (rep) } }; };
                     };
                 }
                 #[doc(hidden)]
-                pub(crate) use __export_component_lexopt_wasm_lexopt_cabi;
+                pub(crate) use __export_jcbhmr_lexopt_lexopt_cabi;
                 #[repr(align(4))]
                 struct _RetArea([::core::mem::MaybeUninit<u8>; 24]);
                 static mut _RET_AREA: _RetArea = _RetArea(
@@ -2292,7 +2237,6 @@ pub mod exports {
     }
 }
 mod _rt {
-    pub use alloc_crate::string::String;
     use core::fmt;
     use core::marker;
     use core::sync::atomic::{AtomicU32, Ordering::Relaxed};
@@ -2368,6 +2312,7 @@ mod _rt {
         }
     }
     pub use alloc_crate::boxed::Box;
+    pub use alloc_crate::string::String;
     pub use alloc_crate::vec::Vec;
     #[cfg(target_arch = "wasm32")]
     pub fn run_ctors_once() {
@@ -2474,53 +2419,51 @@ mod _rt {
 /// ```
 #[allow(unused_macros)]
 #[doc(hidden)]
-macro_rules! __export_example_impl {
+macro_rules! __export_lexopt_world_impl {
     ($ty:ident) => {
         self::export!($ty with_types_in self);
     };
     ($ty:ident with_types_in $($path_to_types_root:tt)*) => {
         $($path_to_types_root)*::
-        exports::component::lexopt_wasm::lexopt::__export_component_lexopt_wasm_lexopt_cabi!($ty
-        with_types_in $($path_to_types_root)*:: exports::component::lexopt_wasm::lexopt);
+        exports::jcbhmr::lexopt::lexopt::__export_jcbhmr_lexopt_lexopt_cabi!($ty
+        with_types_in $($path_to_types_root)*:: exports::jcbhmr::lexopt::lexopt);
     };
 }
 #[doc(inline)]
-pub(crate) use __export_example_impl as export;
+pub(crate) use __export_lexopt_world_impl as export;
 #[cfg(target_arch = "wasm32")]
-#[link_section = "component-type:wit-bindgen:0.35.0:component:lexopt-wasm:example:encoded world"]
+#[link_section = "component-type:wit-bindgen:0.35.0:jcbhmr:lexopt:lexopt-world:encoded world"]
 #[doc(hidden)]
-pub static __WIT_BINDGEN_COMPONENT_TYPE: [u8; 1422] = *b"\
-\0asm\x0d\0\x01\0\0\x19\x16wit-component-encoding\x04\0\x07\x90\x0a\x01A\x02\x01\
-A\x02\x01BH\x01s\x04\0\x0arust-error\x03\0\0\x04\0\x06parser\x03\x01\x04\0\x08ra\
-w-args\x03\x01\x04\0\x0bvalues-iter\x03\x01\x01p}\x01q\x03\x05short\x01t\0\x04lo\
-ng\x01s\0\x05value\x01\x05\0\x04\0\x03arg\x03\0\x06\x01ks\x01r\x01\x06option\x08\
-\x04\0\x13error-missing-value\x03\0\x09\x01r\x02\x06options\x05value\x05\x04\0\x16\
-error-unexpected-value\x03\0\x0b\x01r\x02\x05values\x05error\x01\x04\0\x14error-\
-parsing-failed\x03\0\x0d\x01q\x07\x0dmissing-value\x01\x0a\0\x11unexpected-optio\
-n\x01s\0\x13unexpected-argument\x01\x05\0\x10unexpected-value\x01\x0c\0\x0eparsi\
-ng-failed\x01\x0e\0\x11non-unicode-value\x01\x05\0\x06custom\x01\x01\0\x04\0\x05\
-error\x03\0\x0f\x01h\x02\x01@\x01\x04self\x11\0\x08\x04\0\x17[method]parser.bin-\
-name\x01\x12\x01p\x05\x01i\x02\x01@\x01\x04args\x13\0\x14\x04\0\x18[static]parse\
-r.from-args\x01\x15\x01@\0\0\x14\x04\0\x17[static]parser.from-env\x01\x16\x01@\x01\
-\x04iter\x13\0\x14\x04\0\x18[static]parser.from-iter\x01\x17\x01k\x07\x01j\x01\x18\
-\x01\x10\x01@\x01\x04self\x11\0\x19\x04\0\x13[method]parser.next\x01\x1a\x01k\x05\
-\x01@\x01\x04self\x11\0\x1b\x04\0\x1d[method]parser.optional-value\x01\x1c\x01i\x03\
-\x01j\x01\x1d\x01\x10\x01@\x01\x04self\x11\0\x1e\x04\0\x17[method]parser.raw-arg\
-s\x01\x1f\x01k\x1d\x01@\x01\x04self\x11\0\x20\x04\0\x1b[method]parser.try-raw-ar\
-gs\x01!\x01j\x01\x05\x01\x10\x01@\x01\x04self\x11\0\"\x04\0\x14[method]parser.va\
-lue\x01#\x01i\x04\x01j\x01$\x01\x10\x01@\x01\x04self\x11\0%\x04\0\x15[method]par\
-ser.values\x01&\x01@\x01\x04self\x11\0\x14\x04\0\x14[method]parser.clone\x01'\x01\
-@\x02\x04self\x11\x06source\x14\0\x14\x04\0\x19[method]parser.clone-from\x01(\x01\
-h\x03\x01@\x01\x04self)\0\x13\x04\0\x19[method]raw-args.as-slice\x01*\x01@\x01\x04\
-self)\0\x1b\x04\0\x15[method]raw-args.peek\x01+\x04\0\x15[method]raw-args.next\x01\
-+\x01ky\x01o\x02y,\x01@\x01\x04self)\0-\x04\0\x1a[method]raw-args.size-hint\x01.\
-\x01@\x01\x04self)\0y\x04\0\x16[method]raw-args.count\x01/\x04\0\x15[method]raw-\
-args.last\x01+\x01@\x02\x04self)\x01ny\0\x1b\x04\0\x14[method]raw-args.nth\x010\x01\
-@\x01\x04self)\0\x1d\x04\0\x17[method]raw-args.by-ref\x011\x01@\x01\x04self\x07\0\
-\x10\x04\0\x0earg-unexpected\x012\x04\0\x1ccomponent:lexopt-wasm/lexopt\x05\0\x04\
-\0\x1dcomponent:lexopt-wasm/example\x04\0\x0b\x0d\x01\0\x07example\x03\0\0\0G\x09\
-producers\x01\x0cprocessed-by\x02\x0dwit-component\x070.220.0\x10wit-bindgen-rus\
-t\x060.35.0";
+pub static __WIT_BINDGEN_COMPONENT_TYPE: [u8; 1359] = *b"\
+\0asm\x0d\0\x01\0\0\x19\x16wit-component-encoding\x04\0\x07\xcc\x09\x01A\x02\x01\
+A\x02\x01BD\x04\0\x06parser\x03\x01\x04\0\x08raw-args\x03\x01\x04\0\x0bvalues-it\
+er\x03\x01\x01p}\x01q\x03\x05short\x01t\0\x04long\x01s\0\x05value\x01\x03\0\x04\0\
+\x03arg\x03\0\x04\x01ks\x01r\x01\x06option\x06\x04\0\x13error-missing-value\x03\0\
+\x07\x01r\x02\x06options\x05value\x03\x04\0\x16error-unexpected-value\x03\0\x09\x01\
+r\x02\x05values\x05errors\x04\0\x14error-parsing-failed\x03\0\x0b\x01q\x07\x0dmi\
+ssing-value\x01\x08\0\x11unexpected-option\x01s\0\x13unexpected-argument\x01\x03\
+\0\x10unexpected-value\x01\x0a\0\x0eparsing-failed\x01\x0c\0\x11non-unicode-valu\
+e\x01\x03\0\x06custom\x01s\0\x04\0\x05error\x03\0\x0d\x01h\0\x01@\x01\x04self\x0f\
+\0\x06\x04\0\x17[method]parser.bin-name\x01\x10\x01p\x03\x01i\0\x01@\x01\x04args\
+\x11\0\x12\x04\0\x18[static]parser.from-args\x01\x13\x01@\0\0\x12\x04\0\x17[stat\
+ic]parser.from-env\x01\x14\x01@\x01\x04iter\x11\0\x12\x04\0\x18[static]parser.fr\
+om-iter\x01\x15\x01k\x05\x01j\x01\x16\x01\x0e\x01@\x01\x04self\x0f\0\x17\x04\0\x13\
+[method]parser.next\x01\x18\x01k\x03\x01@\x01\x04self\x0f\0\x19\x04\0\x1d[method\
+]parser.optional-value\x01\x1a\x01i\x01\x01j\x01\x1b\x01\x0e\x01@\x01\x04self\x0f\
+\0\x1c\x04\0\x17[method]parser.raw-args\x01\x1d\x01k\x1b\x01@\x01\x04self\x0f\0\x1e\
+\x04\0\x1b[method]parser.try-raw-args\x01\x1f\x01j\x01\x03\x01\x0e\x01@\x01\x04s\
+elf\x0f\0\x20\x04\0\x14[method]parser.value\x01!\x01i\x02\x01j\x01\"\x01\x0e\x01\
+@\x01\x04self\x0f\0#\x04\0\x15[method]parser.values\x01$\x01@\x01\x04self\x0f\0\x12\
+\x04\0\x14[method]parser.clone\x01%\x01@\x02\x04self\x0f\x06source\x12\0\x12\x04\
+\0\x19[method]parser.clone-from\x01&\x01h\x01\x01@\x01\x04self'\0\x11\x04\0\x19[\
+method]raw-args.as-slice\x01(\x01@\x01\x04self'\0\x19\x04\0\x15[method]raw-args.\
+peek\x01)\x04\0\x15[method]raw-args.next\x01)\x01ky\x01o\x02y*\x01@\x01\x04self'\
+\0+\x04\0\x1a[method]raw-args.size-hint\x01,\x01@\x01\x04self'\0y\x04\0\x16[meth\
+od]raw-args.count\x01-\x04\0\x15[method]raw-args.last\x01)\x01@\x02\x04self'\x01\
+ny\0\x19\x04\0\x14[method]raw-args.nth\x01.\x01@\x01\x04self\x05\0\x0e\x04\0\x0e\
+arg-unexpected\x01/\x04\0\x14jcbhmr:lexopt/lexopt\x05\0\x04\0\x1ajcbhmr:lexopt/l\
+exopt-world\x04\0\x0b\x12\x01\0\x0clexopt-world\x03\0\0\0G\x09producers\x01\x0cp\
+rocessed-by\x02\x0dwit-component\x070.220.0\x10wit-bindgen-rust\x060.35.0";
 #[inline(never)]
 #[doc(hidden)]
 pub fn __link_custom_section_describing_imports() {
